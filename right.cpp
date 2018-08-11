@@ -1,61 +1,31 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cstring>
+#include <map>
 using namespace std;
 
-int main() {
-    string num;
-    getline(cin, num);
-    int t = num.length(), sum = 0;
-    for(int i = 0; i < t; ++i) {
-        sum += int(num[i] - '0');
-    }
-    if(sum == 0) {
-        cout << "zero";
-    }
-    stack<int>S;
-    while(sum != 0) {
-        S.push(sum % 10);
-        sum /= 10;
-    }
-    bool space = false;
-    while(!S.empty()) {
-        int n = S.top();
-        S.pop();
-        if(space) {
-            cout << " ";
+char s[25], r[25];
+map<int, int> sm, rm;
+int main()
+{
+    gets(s+1);
+    int len = strlen(s+1);
+    for (int i = len; i > 0; --i){
+        ++sm[s[i] - '0'];
+        r[i] += (s[i] - '0') * 2;
+        if (r[i] >= 10){
+            ++r[i-1];
+            r[i] -= 10;
         }
-        space = true;
-        switch(n) {
-        case 0:
-            cout << "zero";
-            break;
-        case 1:
-            cout << "one";
-            break;
-        case 2:
-            cout << "two";
-            break;
-        case 3:
-            cout << "three";
-            break;
-        case 4:
-            cout << "four";
-            break;
-        case 5:
-            cout << "five";
-            break;
-        case 6:
-            cout << "six";
-            break;
-        case 7:
-            cout << "seven";
-            break;
-        case 8:
-            cout << "eight";
-            break;
-        case 9:
-            cout << "nine";
-            break;
-        }
+        ++rm[r[i]];
     }
+    if (r[0] > 0){
+        ++rm[r[0]];
+    }
+    printf("%s\n", (rm == sm) ? "Yes":"No");
+    if (r[0] > 0) printf("%d", r[0]);
+    for (int i = 1; i <= len; ++i){
+        printf("%d", r[i]);
+    }
+    printf("\n");
     return 0;
 }
