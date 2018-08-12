@@ -1,31 +1,55 @@
+#include <iostream>
+#include <sstream>
+#include <string>
 #include <cstdio>
-#include <cstring>
-#include <map>
+#include <queue>
+#include <vector>
+#include <algorithm>
 using namespace std;
-
-char s[25], r[25];
-map<int, int> sm, rm;
-int main()
-{
-    gets(s+1);
-    int len = strlen(s+1);
-    for (int i = len; i > 0; --i){
-        ++sm[s[i] - '0'];
-        r[i] += (s[i] - '0') * 2;
-        if (r[i] >= 10){
-            ++r[i-1];
-            r[i] -= 10;
+typedef long long ll;
+const int N = 1e3+5;
+const ll INF = 0x3f3f3f3f;
+const double eps=1e-4;
+const int T=3;
+ 
+string str;
+int k;
+string add(string a,string b) {
+    char ans[N]= {0};
+    ans[N-1]='\0';
+    int len=N-2;
+    for(int i=a.length()-1; i>=0; i--,len--) {
+        int tmp=ans[len]+a[i]-'0'+b[i]-'0';
+        if(tmp>9) {
+            ans[len]=tmp%10+'0';
+            ans[len-1]++;
+        } else {
+            ans[len]=tmp+'0';
         }
-        ++rm[r[i]];
     }
-    if (r[0] > 0){
-        ++rm[r[0]];
+    if(ans[len]>0) {
+        ans[len]+='0';
+        len--;
     }
-    printf("%s\n", (rm == sm) ? "Yes":"No");
-    if (r[0] > 0) printf("%d", r[0]);
-    for (int i = 1; i <= len; ++i){
-        printf("%d", r[i]);
+    return string(ans+len+1);
+}
+int main() {
+    cin>>str>>k;
+    bool flag=0;
+    for(int i=0; i<k; i++) {
+        string s=str;
+        reverse(s.begin(),s.end());
+        if(s!=str) {
+            str=add(str,s);
+        } else {
+            flag=1;
+            cout<<str<<"\n"<<i<<endl;
+            break;
+        }
     }
-    printf("\n");
+    if(!flag) {
+        cout<<str<<"\n"<<k<<endl;
+    }
     return 0;
 }
+

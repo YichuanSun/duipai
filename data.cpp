@@ -15,6 +15,6 @@ int main()
 	//freopen("input.txt","w",stdout); 
 	int n,t,q;
 	n=rand();
-	for (int i=0;i<n;i++)	printf("%d\n",abs(rand()));
+	for (int i=0;i<n;i++)	printf("%d %d\n",abs(rand()),abs(rand()));
 	return 0;
 }
