@@ -13,8 +13,13 @@ int main()
 	srand(time(0));
 //	srand( (unsigned)time( NULL ) );
 	//freopen("input.txt","w",stdout); 
-	int n,t,q;
-	n=rand();
-	for (int i=0;i<n;i++)	printf("%d %d\n",abs(rand()),abs(rand()));
+	int n,t;
+	n=rand()%81;
+	for (int i=0;i<n;i++)	{
+		t=rand()%123;
+		if (t<97)	continue;
+		printf("%c",t);
+	}
+	printf("\n");
 	return 0;
 }
