@@ -1,7 +1,1 @@
-y    i
-b    w
-t    n
-i    q
-m    z
-j    w
-varnme
+1

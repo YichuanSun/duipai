@@ -13,12 +13,17 @@ int main()
 	srand(time(0));
 //	srand( (unsigned)time( NULL ) );
 	//freopen("input.txt","w",stdout); 
-	int n,t;
-	n=rand()%81;
+	int n,m,t;
+	n=rand()%101;
+	m=rand()%1001;
+	t=rand();
+	//printf("%d %d\n",n,m);
+	//printf("%d",t);
+	printf("%d\n",n);
+	printf("%d",rand()%100001);
 	for (int i=0;i<n;i++)	{
-		t=rand()%123;
-		if (t<97)	continue;
-		printf("%c",t);
+		if (rand()&1)	printf(" %d",rand());
+		else	printf(" %d",-1*rand());
 	}
 	printf("\n");
 	return 0;
